@@ -9,6 +9,7 @@ import Login from "../pages/Login.vue";
 import Register from "../pages/Register.vue";
 import Dashboard from "../pages/Dashboard.vue";
 import CreateCategories from "../pages/categories/CreateCategories.vue";
+import CategoriesList from "../pages/categories/CategoriesList.vue";
 
 const routes = [
     {
@@ -61,6 +62,12 @@ const routes = [
         component: CreateCategories,
         meta: { requiresAuth: true },
     },
+    {
+        path: "/categories",
+        name: "CategoriesList",
+        component: CategoriesList,
+        meta: { requiresAuth: true },
+    },
 ];
 
 const router = createRouter({
@@ -68,15 +75,13 @@ const router = createRouter({
     routes,
 });
 
-router.beforeEach((to, from, next) => {
-    const authenticated = localStorage.getItem("authenticated");
-    if (to.meta.requiresGuest && authenticated) {
-      next({ name: "Dashboard" });
-    } else if (to.meta.requiresAuth && !authenticated) {
-      next({ name: "Login" });
-    } else {
-      next();
-    }
-  });
+// router.beforeEach((to, from) => {
+//     const authenticated = localStorage.getItem("authenticated");
+//     if (to.meta.requiresGuest && authenticated) {
+//         return { name: "Dashboard" };
+//     } else if (to.meta.requiresAuth && !authenticated) {
+//         return { name: "Login" };
+//     }
+// });
 
 export default router;

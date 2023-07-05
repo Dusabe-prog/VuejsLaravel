@@ -71,7 +71,7 @@
                 <a href=""><i class="fab fa-instagram"></i></a>
                 <a href=""><i class="fab fa-twitter"></i></a>
             </div>
-            <small>&copy; 2023 Dusabe Blog</small>
+            <small>&copy; Dusabe Blog</small>
         </footer>
     </div>
 </template>

@@ -7,9 +7,15 @@
             <ul>
                 <li><a href="">Create Post</a></li>
                 <li>
-                    <router-link :to="{ name: 'CreateCategories' }">  Create Categories </router-link>
+                    <router-link :to="{ name: 'CreateCategories' }">
+                        Create Categories
+                    </router-link>
                 </li>
-                <li><a href="">Categories Listg</a></li>
+                <li>
+                    <router-link :to="{ name: 'CategoriesList' }">
+                        Categories List</router-link
+                    >
+                </li>
             </ul>
         </div>
     </div>
