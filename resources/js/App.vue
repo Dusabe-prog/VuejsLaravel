@@ -8,33 +8,58 @@
             <div class="side-links">
                 <ul>
                     <li>
-                        <router-link @click="HideOverlay" :to="{ name: 'Home' }"> Home </router-link>
+                        <router-link
+                            @click="HideOverlay"
+                            :to="{ name: 'Home' }"
+                        >
+                            Home
+                        </router-link>
                     </li>
                     <li>
-                        <router-link @click="HideOverlay" :to="{ name: 'Blog' }"> Blog </router-link>
+                        <router-link
+                            @click="HideOverlay"
+                            :to="{ name: 'Blog' }"
+                        >
+                            Blog
+                        </router-link>
                     </li>
                     <li>
-                        <router-link @click="HideOverlay" :to="{ name: 'About' }">
+                        <router-link
+                            @click="HideOverlay"
+                            :to="{ name: 'About' }"
+                        >
                             About
                         </router-link>
                     </li>
                     <li>
-                        <router-link @click="HideOverlay" :to="{ name: 'Contact' }">
+                        <router-link
+                            @click="HideOverlay"
+                            :to="{ name: 'Contact' }"
+                        >
                             Contact
                         </router-link>
                     </li>
                     <li v-if="!loggedIn">
-                        <router-link @click="HideOverlay" :to="{ name: 'Login' }">
+                        <router-link
+                            @click="HideOverlay"
+                            :to="{ name: 'Login' }"
+                        >
                             Login
                         </router-link>
                     </li>
                     <li v-if="!loggedIn">
-                        <router-link @click="HideOverlay" :to="{ name: 'Register' }">
+                        <router-link
+                            @click="HideOverlay"
+                            :to="{ name: 'Register' }"
+                        >
                             Register
                         </router-link>
                     </li>
                     <li v-if="loggedIn">
-                        <router-link @click="HideOverlay" :to="{ name: 'Dashboard' }">
+                        <router-link
+                            @click="HideOverlay"
+                            :to="{ name: 'Dashboard' }"
+                        >
                             Dashboard
                         </router-link>
                     </li>
@@ -42,14 +67,14 @@
             </div>
 
             <!-- sidebar footer -->
-            <footer class="sidebar-footer"> 
+            <footer class="sidebar-footer">
                 <div>
                     <a href=""><i class="fab fa-facebook-f"></i></a>
                     <a href=""><i class="fab fa-instagram"></i></a>
                     <a href=""><i class="fab fa-twitter"></i></a>
                 </div>
 
-                <small>&copy 2023 Dusabe Blog</small>
+                <small>&copy; 2023 Dusabe Blog</small>
             </footer>
         </div>
         <!-- Menu Button -->
@@ -79,36 +104,35 @@
 <script>
 export default {
     data() {
-      return {
-        overlayVisibility: false,
-        loggedIn: false,
-      }
+        return {
+            overlayVisibility: false,
+            loggedIn: false,
+        };
     },
     methods: {
-      ShowOverlay(event){
-        this.overlayVisibility = true;
-      },
-      HideOverlay(event){
-        this.overlayVisibility = false;
-      },
-      updateSidebar(){
-        this.loggedIn = !this.loggedIn;
-      },
+        ShowOverlay(event) {
+            this.overlayVisibility = true;
+        },
+        HideOverlay(event) {
+            this.overlayVisibility = false;
+        },
+        updateSidebar() {
+            this.loggedIn = !this.loggedIn;
+        },
     },
-    mounted(){
-        if(localStorage.getItem('authenticated')){
+    mounted() {
+        if (localStorage.getItem("authenticated")) {
             this.loggedIn = true;
-        }else{
+        } else {
             this.loggedIn = false;
         }
-    }
+    },
 };
 </script>
 
 <style scoped>
 .showOverlay {
-    width: 100%; 
+    width: 100%;
     z-index: 5;
 }
 </style>
- 

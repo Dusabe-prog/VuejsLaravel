@@ -8,8 +8,10 @@ import Home from "../pages/Home.vue";
 import Login from "../pages/Login.vue";
 import Register from "../pages/Register.vue";
 import Dashboard from "../pages/Dashboard.vue";
-import CreateCategories from "../pages/categories/CreateCategories.vue";
 import CategoriesList from "../pages/categories/CategoriesList.vue";
+import CreateCategories from "../pages/categories/CreateCategories.vue";
+import EditCategories from "../pages/categories/EditCategories.vue";
+import CreatePosts from "../pages/posts/CreatePosts.vue";
 
 const routes = [
     {
@@ -68,6 +70,19 @@ const routes = [
         component: CategoriesList,
         meta: { requiresAuth: true },
     },
+    {
+        path: "/categories/:id/edit",
+        name: "EditCategories",
+        component: EditCategories,
+        meta: { requiresAuth: true },
+        props: true,
+    },
+    {
+        path: "/posts/create",
+        name: "CreatePosts",
+        component: CreatePosts,
+        meta: { requiresAuth: true },
+    },
 ];
 
 const router = createRouter({
@@ -75,13 +90,13 @@ const router = createRouter({
     routes,
 });
 
-// router.beforeEach((to, from) => {
-//     const authenticated = localStorage.getItem("authenticated");
-//     if (to.meta.requiresGuest && authenticated) {
-//         return { name: "Dashboard" };
-//     } else if (to.meta.requiresAuth && !authenticated) {
-//         return { name: "Login" };
-//     }
-// });
+router.beforeEach((to, from) => {
+    const authenticated = localStorage.getItem("authenticated");
+    if (to.meta.requiresGuest && authenticated) {
+        return { name: "Dashboard" };
+    } else if (to.meta.requiresAuth && !authenticated) {
+        return { name: "Login" };
+    }
+});
 
 export default router;

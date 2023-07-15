@@ -1,14 +1,14 @@
 <template>
     <div id="create-categories">
         <div id="contact-us">
-            <h1>Create New Category!</h1>
+            <h1>Edit Category!</h1>
             <div class="success-msg" v-if="success">
-                <i class="fa fa-check"></i> Category created successfully
+                <i class="fa fa-check"></i> Category updated successfully
             </div>
             <div class="contact-form">
                 <form @submit.prevent="submit">
                     <label for="name"><span>Name</span></label>
-                    <input type="text" id="name" v-model="fields.name" />
+                    <input type="text" id="name" v-model="field.name" />
                     <span v-if="errors.name" class="error">
                         {{ errors.name[0] }}
                     </span>
@@ -26,9 +26,10 @@
 
 <script>
 export default {
+    props: ["id"],
     data() {
         return {
-            fields: {},
+            field: {},
             errors: {},
             success: false,
         };
@@ -36,12 +37,12 @@ export default {
     methods: {
         submit() {
             axios
-                .post("/api/categories/create", this.fields)
+                .put("/api/categories/" + this.id, this.field)
                 .then(() => {
-                    this.fields = {};
+                    this.field = {};
                     this.errors = {};
                     this.success = true;
-
+                    this.$router.push({ name: "CategoriesList" });
                     setInterval(() => {
                         this.success = false;
                     }, 2500);
@@ -50,6 +51,16 @@ export default {
                     this.errors = error.response.data.errors;
                 });
         },
+    },
+    mounted() {
+        axios
+            .get("/api/categories/" + this.id)
+            .then((response) => {
+                this.field = response.data;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     },
 };
 </script>

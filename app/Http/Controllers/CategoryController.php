@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    //
+    public function index()
+    {
+        return Category::latest()->get();
+    }
 
     public function store(Request $request)
     {
@@ -19,6 +22,29 @@ class CategoryController extends Controller
         $category = new Category();
         $category->name = $name;
 
-        return $category->save(); 
+        return $category->save();
+    }
+
+    public function show(Category $category)
+    {
+        return $category;
+    }
+
+    public function update(Request $request, Category $category)
+    {
+        $request->validate([
+            'name' => 'required | unique:categories',
+        ]);
+
+        $name = $request->input('name');
+
+        $category->name = $name;
+
+        return $category->save();
+    }
+
+    public function destroy(Category $category)
+    {
+        return $category->delete();
     }
 }
